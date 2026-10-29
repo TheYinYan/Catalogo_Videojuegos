@@ -1,32 +1,41 @@
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f4f7f6;
-  color: #333;
-  margin: 0;
-  padding: 20px;
-}
-
 h1 {
-  color: #2c3e50;
+  color: #ffffff ;
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   font-size: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 10px rgba(102, 192, 244, 0.4);
 }
 
-/* =========================================
-   BUSCADORES
-   ========================================= */
-.buscador-container {
-  max-width: 900px;
+.buscador-container,
+.filtros-globales {
+  max-width: 950px;
   margin: 0 auto 30px auto;
-  padding: 20px;
-  background-color: #ffffff;
+  padding: 24px;
+  background-color: #17212b ; 
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #2a475e;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 20px;
+}
+
+.filtros-globales {
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.buscador-container label,
+.filtro span,
+.filtro-precios span {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #8f9ead ;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .buscador-container .buscador {
@@ -36,154 +45,84 @@ h1 {
   flex: 1 1 300px;
 }
 
-.buscador-container label {
-  font-weight: bold;
-  color: #4a5568;
-}
-
-.buscador-container input {
-  padding: 10px 14px;
-  border: 2px solid #e2e8f0;
-  border-radius: 6px;
+input[type="text"],
+input[type="number"],
+.filtro-select {
+  padding: 12px 16px;
+  border: 1px solid #2a475e;
+  border-radius: 4px;
   font-size: 1rem;
+  color: #ffffff ; 
+  background-color: #101822 ; 
   outline: none;
-  transition: border-color 0.2s;
+  transition: all 0.2s ease;
 }
 
-.buscador-container input:focus {
-  border-color: #3182ce;
+input::placeholder {
+  color: #556c7d ;
 }
 
-.buscador-container button {
-  padding: 10px 20px;
-  background-color: #3182ce;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.buscador-container button:hover {
-  background-color: #2b6cb0;
-}
-
-/* =========================================
-   FILTROS GLOBALES (Género, Plataforma, Precio)
-   ========================================= */
-.filtros-globales {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 20px;
-  max-width: 900px;
-  margin: 0 auto 40px auto;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.filtro, 
-.filtro-precios {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.filtro span, 
-.filtro-precios span {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #4a5568;
-  letter-spacing: 0.5px;
+input[type="text"]:focus,
+input[type="number"]:focus,
+.filtro-select:focus {
+  border-color: #66c0f4 ;
+  box-shadow: 0 0 0 3px rgba(102, 192, 244, 0.2);
 }
 
 .filtro-select {
   width: 100%;
-  min-width: 170px;
-  padding: 10px 16px;
-  font-size: 1rem;
-  color: #2d3748;
-  background-color: #ffffff;
-  border: 2px solid #e2e8f0;
-  border-radius: 8px;
+  min-width: 180px;
   cursor: pointer;
-  outline: none;
-  transition: all 0.2s ease-in-out;
   appearance: none;
-  background-position: right 12px center;
-  background-size: 16px;
+  background-position: right 12px center ;
+  background-size: 16px ;
   padding-right: 40px;
 }
 
-.filtro-select:focus {
-  border-color: #3182ce;
-  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.15);
-}
-
-.filtro-select:hover {
-  border-color: #cbd5e1;
+.filtro-select option {
+  background-color: #17212b ;
+  color: #ffffff ;
 }
 
 .precio-inputs {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .precio-inputs input {
   width: 80px;
-  padding: 10px 12px;
-  border: 2px solid #e2e8f0;
-  border-radius: 6px;
-  font-size: 1rem;
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.precio-inputs input:focus {
-  border-color: #3182ce;
-  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.15);
-}
-
-.precio-inputs input:hover {
-  border-color: #cbd5e1;
 }
 
 .precio-inputs .separador {
-  color: #718096;
+  color: #8f9ead ;
   font-weight: bold;
-  font-size: 1.1rem;
 }
 
-.precio-inputs button {
-  padding: 10px 16px;
-  background-color: #3182ce;
-  color: white;
+button {
+  padding: 12px 24px;
+  background: linear-gradient(90deg, #47bfff 0%, #1a44c2 100%) ;
+  color: #ffffff ;
   border: none;
-  border-radius: 6px;
+  border-radius: 4px;
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   cursor: pointer;
-  transition: background-color 0.2s;
-  margin-left: 4px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.precio-inputs button:hover {
-  background-color: #2b6cb0;
+button:hover:not(:disabled) {
+  background: linear-gradient(90deg, #1a44c2 0%, #47bfff 100%) ;
+  box-shadow: 0 0 15px rgba(71, 191, 255, 0.5);
+  transform: translateY(-2px);
 }
 
-/* =========================================
-   TARJETAS DE JUEGOS
-   ========================================= */
 .contenedor-tarjetas {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
   max-width: 1200px;
   margin: 0 auto;
@@ -191,40 +130,66 @@ h1 {
 }
 
 .card {
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  background-color: #2a475e ;
+  color: #c7d5e0 ;
+  border-radius: 8px;
   padding: 20px;
-  border: 1px solid #e2e8f0;
-  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border: 1px solid transparent;
 }
 
 .card h3 {
   margin-top: 0;
-  color: #2d3748;
+  margin-bottom: 15px;
+  color: #ffffff ;
   font-size: 1.3rem;
-  border-bottom: 2px solid #edf2f7;
-  padding-bottom: 10px;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 12px;
 }
 
 .card p {
   margin: 8px 0;
-  color: #4a5568;
-  font-size: 0.95rem;
+  color: #8f9ead ;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .card p b {
-  color: #718096;
+  color: #ffffff ;
+  font-weight: 500;
+}
+
+.card p:last-child {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 1.1rem;
+}
+
+.card p:last-child b {
+  background-color: #4c6b22 ;
+  color: #a4d007 ;
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-weight: bold;
 }
 
 .mensaje-vacio {
+  grid-column: 1 / -1;
   display: block;
   text-align: center;
-  color: #a0aec0;
+  color: #8f9ead ;
   font-size: 1.2rem;
   margin-top: 40px;
-  font-style: italic;
+  padding: 40px;
+  background-color: #17212b ;
+  border-radius: 8px;
+  border: 1px dashed #2a475e;
 }
