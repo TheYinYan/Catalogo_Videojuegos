@@ -18,6 +18,10 @@ export class GameService {
     return this.http.get<Game>(this.apiUrl + `/${id}`);
   }
 
+  getGameGlobal(q: string) {
+    return this.http.get<Game[]>(this.apiUrl + `?q=${q}`);
+  }
+
   getGameTitle(title: string) {
     return this.http.get<Game[]>(this.apiUrl + `?title_like=${title}`);
   }
