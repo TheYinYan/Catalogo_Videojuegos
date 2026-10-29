@@ -13,6 +13,10 @@ import { Observable } from 'rxjs';
 export class AppComponent implements OnInit {
   title = 'Catalogo de Videojuegos';
   games: Game[] = [];
+
+  selectedGenre = '';
+  selectedPlatform = '';
+
   constructor(private gameServer: GameService) { }
 
   ngOnInit(): void {
@@ -35,9 +39,18 @@ export class AppComponent implements OnInit {
     if (genre === '') {
       this.ngOnInit();
     } else {
-      this.gameServer.getGameGenre(genre).subscribe((games) => {
-        this.games = games;
-      });
+      this.selectedGenre = genre;
+      // this.currentPage = 1;
+      if (this.selectedPlatform !== "") {
+        this.gameServer.getGameplatformGenre(this.selectedPlatform, genre).subscribe((games) => {
+          this.games = games;
+        });
+      }
+      else {
+        this.gameServer.getGameGenre(genre).subscribe((games) => {
+          this.games = games;
+        });
+      }
     }
   }
 
@@ -45,9 +58,16 @@ export class AppComponent implements OnInit {
     if (platform === '') {
       this.ngOnInit();
     } else {
-      this.gameServer.getGameplatform(platform).subscribe((games) => {
+      this.selectedPlatform = platform;
+      // this.currentPage = 1;
+      if (this.selectedGenre !== "") this.gameServer.getGameplatformGenre(platform, this.selectedGenre).subscribe((games) => {
         this.games = games;
       });
+      else {
+        this.gameServer.getGameplatform(platform).subscribe((games) => {
+          this.games = games;
+        });
+      }
     }
   }
 }

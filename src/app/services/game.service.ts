@@ -25,4 +25,8 @@ export class GameService {
   getGameplatform(platform: string) {
     return this.http.get<Game[]>(this.apiUrl + `?platform=${platform}`);
   }
+
+  getGameplatformGenre(platform: string, genre: string){
+    return this.http.get<Game[]>(this.apiUrl + `?genre=${genre}&platform=${platform}`);
+  }
 }
