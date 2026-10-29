@@ -18,15 +18,19 @@ export class GameService {
     return this.http.get<Game>(this.apiUrl + `/${id}`);
   }
 
+  getGameTitle(title: string) {
+    return this.http.get<Game[]>(this.apiUrl + `?title_like=${title}`);
+  }
+
   getGameGenre(genre: string) {
     return this.http.get<Game[]>(this.apiUrl + `?genre=${genre}`);
   }
-  
+
   getGameplatform(platform: string) {
     return this.http.get<Game[]>(this.apiUrl + `?platform=${platform}`);
   }
 
-  getGameplatformGenre(platform: string, genre: string){
+  getGameplatformGenre(platform: string, genre: string) {
     return this.http.get<Game[]>(this.apiUrl + `?genre=${genre}&platform=${platform}`);
   }
 }

@@ -55,6 +55,16 @@ export class AppComponent implements OnInit {
     }
   }
 
+  onBuscarTitulo(title: string) {
+    if (title  === '') {
+      this.ngOnInit();
+    } else {
+      this.gameServer.getGameTitle(title).subscribe((game) => {
+        this.games = game;
+      });
+    }
+  }
+
   onGenreChange(genre: string): void {
     this.selectedGenre = genre;
     this.aplicarFiltros();
