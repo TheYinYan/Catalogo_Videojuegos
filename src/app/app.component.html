@@ -7,12 +7,9 @@
 </div>
 
 <div class="filtro-container">
-  <div class="filtro-genero-container">
+  <div class="filtro">
     <span>Filtro de Género</span>
-    <select
-      #genreSelect
-      class="filtro-genero-select"
-      (change)="onGenreChange(genreSelect.value)">
+    <select #genreSelect class="filtro-select" (change)="onGenreChange(genreSelect.value)">
       <option value>Todos</option>
       <option value="Action">Action</option>
       <option value="Adventure">Adventure</option>
@@ -24,8 +21,15 @@
     </select>
   </div>
   
-  <div class="filtro-plataforma-container">
-
+  <div class="filtro">
+    <span>Filtro de Plataforma</span>
+    <select #platformSelect class="filtro-select" (change)="onPlatformChange(platformSelect.value)">
+      <option value="">Todas</option>
+      <option value="PC">PC</option>
+      <option value="PlayStation">PlayStation</option>
+      <option value="Xbox">Xbox</option>
+      <option value="Switch">Switch</option>
+    </select>
   </div>
 </div>
 

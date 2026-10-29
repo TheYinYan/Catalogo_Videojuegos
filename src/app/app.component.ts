@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 export class AppComponent implements OnInit {
   title = 'Catalogo de Videojuegos';
   games: Game[] = [];
-  constructor(private gameServer: GameService) {}
+  constructor(private gameServer: GameService) { }
 
   ngOnInit(): void {
     this.gameServer.getGames().subscribe((games) => {
@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   }
 
   onBuscarId(id: string) {
-    if (id === undefined || id === '') {
+    if (id === '') {
       this.ngOnInit();
     } else {
       this.gameServer.getGame(+id).subscribe((game) => {
@@ -35,8 +35,18 @@ export class AppComponent implements OnInit {
     if (genre === '') {
       this.ngOnInit();
     } else {
-      this.gameServer.getGameGenre(genre).subscribe((game) => {
-        this.games = game;
+      this.gameServer.getGameGenre(genre).subscribe((games) => {
+        this.games = games;
+      });
+    }
+  }
+
+  onPlatformChange(platform: string) {
+    if (platform === '') {
+      this.ngOnInit();
+    } else {
+      this.gameServer.getGameplatform(platform).subscribe((games) => {
+        this.games = games;
       });
     }
   }

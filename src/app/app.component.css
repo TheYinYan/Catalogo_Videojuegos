@@ -107,23 +107,34 @@ h1 {
   font-style: italic;
 }
 
-.filtro-genero-container {
+.filtro-container {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
-  max-width: 300px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  align-items: flex-end;
+  max-width: 700px;
   margin: 20px auto;
   padding: 0 20px;
 }
 
-.filtro-genero-container span {
+.filtro {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1 1 240px;
+  max-width: 300px;
+}
+
+.filtro-container span {
   font-size: 0.95rem;
   font-weight: 600;
   color: #4a5568;
   letter-spacing: 0.5px;
 }
 
-.filtro-genero-select {
+.filtro-select {
   width: 100%;
   padding: 10px 16px;
   font-size: 1rem;
@@ -135,25 +146,22 @@ h1 {
   outline: none;
   transition: all 0.2s ease-in-out;
   appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://w3.org' viewBox='0 0 24 24' fill='none' stroke='%23718096' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right 12px center;
   background-size: 16px;
   padding-right: 40px;
 }
 
-.filtro-genero-select:focus {
+.filtro-select:focus {
   border-color: #3182ce;
   box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.15);
 }
 
-.filtro-genero-select:hover {
+.filtro-select:hover {
   border-color: #cbd5e1;
 }
 
-.filtro-genero-select option {
+.filtro-select option {
   color: #2d3748;
   background-color: #ffffff;
   padding: 10px;

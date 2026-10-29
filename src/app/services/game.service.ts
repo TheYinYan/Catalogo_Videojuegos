@@ -9,7 +9,7 @@ export class GameService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:3000/games';
 
-  constructor() {}
+  constructor() { }
   getGames() {
     return this.http.get<Game[]>(this.apiUrl);
   }
@@ -20,5 +20,9 @@ export class GameService {
 
   getGameGenre(genre: string) {
     return this.http.get<Game[]>(this.apiUrl + `?genre=${genre}`);
+  }
+  
+  getGameplatform(platform: string) {
+    return this.http.get<Game[]>(this.apiUrl + `?platform=${platform}`);
   }
 }
