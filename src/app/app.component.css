@@ -13,9 +13,12 @@ h1 {
   font-size: 2.5rem;
 }
 
+/* =========================================
+   BUSCADORES
+   ========================================= */
 .buscador-container {
   max-width: 900px;
-  margin: 0 auto 40px auto;
+  margin: 0 auto 30px auto;
   padding: 20px;
   background-color: #ffffff;
   border-radius: 8px;
@@ -67,6 +70,117 @@ h1 {
   background-color: #2b6cb0;
 }
 
+/* =========================================
+   FILTROS GLOBALES (Género, Plataforma, Precio)
+   ========================================= */
+.filtros-globales {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto 40px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.filtro, 
+.filtro-precios {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filtro span, 
+.filtro-precios span {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #4a5568;
+  letter-spacing: 0.5px;
+}
+
+.filtro-select {
+  width: 100%;
+  min-width: 170px;
+  padding: 10px 16px;
+  font-size: 1rem;
+  color: #2d3748;
+  background-color: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  appearance: none;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 40px;
+}
+
+.filtro-select:focus {
+  border-color: #3182ce;
+  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.15);
+}
+
+.filtro-select:hover {
+  border-color: #cbd5e1;
+}
+
+.precio-inputs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.precio-inputs input {
+  width: 80px;
+  padding: 10px 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.precio-inputs input:focus {
+  border-color: #3182ce;
+  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.15);
+}
+
+.precio-inputs input:hover {
+  border-color: #cbd5e1;
+}
+
+.precio-inputs .separador {
+  color: #718096;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.precio-inputs button {
+  padding: 10px 16px;
+  background-color: #3182ce;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-left: 4px;
+}
+
+.precio-inputs button:hover {
+  background-color: #2b6cb0;
+}
+
+/* =========================================
+   TARJETAS DE JUEGOS
+   ========================================= */
 .contenedor-tarjetas {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -113,64 +227,4 @@ h1 {
   font-size: 1.2rem;
   margin-top: 40px;
   font-style: italic;
-}
-
-.filtro-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 16px;
-  justify-content: center;
-  align-items: flex-end;
-  max-width: 700px;
-  margin: 20px auto;
-  padding: 0 20px;
-}
-
-.filtro {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  flex: 1 1 240px;
-  max-width: 300px;
-}
-
-.filtro-container span {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #4a5568;
-  letter-spacing: 0.5px;
-}
-
-.filtro-select {
-  width: 100%;
-  padding: 10px 16px;
-  font-size: 1rem;
-  color: #2d3748;
-  background-color: #ffffff;
-  border: 2px solid #e2e8f0;
-  border-radius: 8px;
-  cursor: pointer;
-  outline: none;
-  transition: all 0.2s ease-in-out;
-  appearance: none;
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 16px;
-  padding-right: 40px;
-}
-
-.filtro-select:focus {
-  border-color: #3182ce;
-  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.15);
-}
-
-.filtro-select:hover {
-  border-color: #cbd5e1;
-}
-
-.filtro-select option {
-  color: #2d3748;
-  background-color: #ffffff;
-  padding: 10px;
 }

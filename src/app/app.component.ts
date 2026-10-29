@@ -45,6 +45,24 @@ export class AppComponent implements OnInit {
     }
   }
 
+  private aplicarFiltrosPrecio(price_gte: number, price_lte: number): void {
+    if (price_gte !== 0 && price_lte !== 0) {
+      this.gameServer.getGameprice(price_gte, price_lte).subscribe((games) => {
+        this.games = games;
+      });
+    } else if (price_gte !== 0) {
+      this.gameServer.getGamepriceMin(price_gte).subscribe((games) => {
+        this.games = games;
+      });
+    } else if (price_lte !== 0) {
+      this.gameServer.getGamepriceMax(price_lte).subscribe((games) => {
+        this.games = games;
+      });
+    } else {
+      this.ngOnInit();
+    }
+  }
+
   onBuscarId(id: string) {
     if (id === '') {
       this.ngOnInit();
@@ -56,13 +74,17 @@ export class AppComponent implements OnInit {
   }
 
   onBuscarTitulo(title: string) {
-    if (title  === '') {
+    if (title === '') {
       this.ngOnInit();
     } else {
       this.gameServer.getGameTitle(title).subscribe((game) => {
         this.games = game;
       });
     }
+  }
+
+  onBuscarPrecio(price_gte: string, price_lte: string) {
+    this.aplicarFiltrosPrecio(+price_gte, +price_lte)
   }
 
   onGenreChange(genre: string): void {

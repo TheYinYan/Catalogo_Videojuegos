@@ -1,22 +1,22 @@
-<h1>{{this.title}}</h1>
+<h1>{{ title }}</h1>
 
 <div class="buscador-container">
   <div class="buscador">
-    <label for="buscarId">Buscar videojuego por Id:</label>
+    <label for="buscarId">Buscar por Id:</label>
     <input #buscarId id="buscarId" type="text" placeholder="Id del Juego">
     <button (click)="onBuscarId(buscarId.value)">Buscar</button>
   </div>
 
   <div class="buscador">
-    <label for="buscarTitulo">Buscar videojuego por Título:</label>
+    <label for="buscarTitulo">Buscar por Título:</label>
     <input #buscarTitulo id="buscarTitulo" type="text" placeholder="Título del Juego">
     <button (click)="onBuscarTitulo(buscarTitulo.value)">Buscar</button>
   </div>
 </div>
 
-<div class="filtro-container">
+<div class="filtros-globales">
   <div class="filtro">
-    <span>Filtro de Género</span>
+    <span>Género</span>
     <select #genreSelect class="filtro-select" (change)="onGenreChange(genreSelect.value)">
       <option value>Todos</option>
       <option value="Action">Action</option>
@@ -30,7 +30,7 @@
   </div>
 
   <div class="filtro">
-    <span>Filtro de Plataforma</span>
+    <span>Plataforma</span>
     <select #platformSelect class="filtro-select" (change)="onPlatformChange(platformSelect.value)">
       <option value="">Todas</option>
       <option value="PC">PC</option>
@@ -39,6 +39,16 @@
       <option value="Switch">Switch</option>
     </select>
   </div>
+
+  <div class="filtro-precios">
+    <span>Precio (€)</span>
+    <div class="precio-inputs">
+      <input #minPrecio type="number" placeholder="Mín">
+      <span class="separador">-</span>
+      <input #maxPrecio type="number" placeholder="Máx">
+      <button (click)="onBuscarPrecio(minPrecio.value, maxPrecio.value)">Filtrar</button>
+    </div>
+  </div>
 </div>
 
 <div class="contenedor-tarjetas">
@@ -46,12 +56,12 @@
   <div class="card">
     <h3>{{game.title}}</h3>
     <div>
-      <p><b>Género:</b> {{game.genre}}</p>
-      <p><b>Plataforma:</b> {{game.platform}}</p>
-      <p><b>Precio:</b> {{game.price}}€</p>
+      <p><b>Género:</b> {{ game.genre }}</p>
+      <p><b>Plataforma:</b> {{ game.platform }}</p>
+      <p><b>Precio:</b> {{ game.price }}€</p>
     </div>
   </div>
-  }@empty {
+  } @empty {
   <span class="mensaje-vacio">No hay Juegos Cargados</span>
   }
 </div>

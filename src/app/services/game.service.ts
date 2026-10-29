@@ -26,6 +26,18 @@ export class GameService {
     return this.http.get<Game[]>(this.apiUrl + `?title_like=${title}`);
   }
 
+  getGamepriceMax(price_lte: number) {
+    return this.http.get<Game[]>(this.apiUrl + `?price_lte=${price_lte}`);
+  }
+
+  getGamepriceMin(price_gte: number) {
+    return this.http.get<Game[]>(this.apiUrl + `?price_gte=${price_gte}`);
+  }
+
+  getGameprice(price_gte: number, price_lte: number){
+    return this.http.get<Game[]>(this.apiUrl + `?price_gte=${price_gte}&price_lte=${price_lte}`);
+  }
+
   getGameGenre(genre: string) {
     return this.http.get<Game[]>(this.apiUrl + `?genre=${genre}`);
   }
