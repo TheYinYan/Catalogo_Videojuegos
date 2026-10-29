@@ -1,9 +1,17 @@
 <h1>{{this.title}}</h1>
 
 <div class="buscador-container">
-  <label for="buscarId">Buscar videojuego por ID: </label>
-  <input #buscarId id="buscarId" type="text" placeholder="Id del Juego">
-  <button (click)="onBuscarId(buscarId.value)">Buscar</button>
+  <div class="buscador">
+    <label for="buscarId">Buscar videojuego por Id:</label>
+    <input #buscarId id="buscarId" type="text" placeholder="Id del Juego">
+    <button (click)="onBuscarId(buscarId.value)">Buscar</button>
+  </div>
+
+  <div class="buscador">
+    <label for="buscarTitulo">Buscar videojuego por Título:</label>
+    <input #buscarTitulo id="buscarTitulo" type="text" placeholder="Título del Juego">
+    <button (click)="onBuscarId(buscarTitulo.value)">Buscar</button>
+  </div>
 </div>
 
 <div class="filtro-container">
@@ -20,7 +28,7 @@
       <option value="Strategy">Strategy</option>
     </select>
   </div>
-  
+
   <div class="filtro">
     <span>Filtro de Plataforma</span>
     <select #platformSelect class="filtro-select" (change)="onPlatformChange(platformSelect.value)">
