@@ -17,8 +17,10 @@
 <div class="filtros-globales">
   <div class="filtro">
     <span>Género</span>
-    <select #genreSelect class="filtro-select" (change)="onGenreChange(genreSelect.value)">
-      <option value>Todos</option>
+    <select #genreSelect class="filtro-select" 
+            [disabled]="minPrice > 0 || maxPrice > 0" 
+            (change)="onGenreChange(genreSelect.value)">
+      <option value="">Todos</option>
       <option value="Action">Action</option>
       <option value="Adventure">Adventure</option>
       <option value="RPG">RPG</option>
@@ -31,7 +33,9 @@
 
   <div class="filtro">
     <span>Plataforma</span>
-    <select #platformSelect class="filtro-select" (change)="onPlatformChange(platformSelect.value)">
+    <select #platformSelect class="filtro-select" 
+            [disabled]="minPrice > 0 || maxPrice > 0" 
+            (change)="onPlatformChange(platformSelect.value)">
       <option value="">Todas</option>
       <option value="PC">PC</option>
       <option value="PlayStation">PlayStation</option>
@@ -43,10 +47,15 @@
   <div class="filtro-precios">
     <span>Precio (€)</span>
     <div class="precio-inputs">
-      <input #minPrecio type="number" placeholder="Mín">
+      <input #minPrecio type="number" placeholder="Mín" 
+             [disabled]="selectedGenre !== '' || selectedPlatform !== ''">
       <span class="separador">-</span>
-      <input #maxPrecio type="number" placeholder="Máx">
-      <button (click)="onBuscarPrecio(minPrecio.value, maxPrecio.value)">Filtrar</button>
+      <input #maxPrecio type="number" placeholder="Máx" 
+             [disabled]="selectedGenre !== '' || selectedPlatform !== ''">
+      <button [disabled]="selectedGenre !== '' || selectedPlatform !== ''" 
+              (click)="onBuscarPrecio(minPrecio.value, maxPrecio.value)">
+        Filtrar
+      </button>
     </div>
   </div>
 </div>

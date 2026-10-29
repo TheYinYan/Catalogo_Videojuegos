@@ -15,6 +15,8 @@ export class AppComponent implements OnInit {
 
   selectedGenre = '';
   selectedPlatform = '';
+  minPrice = 0; 
+  maxPrice = 0; 
 
   constructor(private gameServer: GameService) { }
 
@@ -84,15 +86,26 @@ export class AppComponent implements OnInit {
   }
 
   onBuscarPrecio(price_gte: string, price_lte: string) {
-    this.aplicarFiltrosPrecio(+price_gte, +price_lte)
+    this.minPrice = price_gte ? +price_gte : 0;
+    this.maxPrice = price_lte ? +price_lte : 0;
+    
+    this.aplicarFiltrosPrecio(this.minPrice, this.maxPrice);
   }
 
   onGenreChange(genre: string): void {
+    if (genre !== '') {
+      this.minPrice = 0;
+      this.maxPrice = 0;
+    }
     this.selectedGenre = genre;
     this.aplicarFiltros();
   }
 
   onPlatformChange(platform: string): void {
+    if (platform !== '') {
+      this.minPrice = 0;
+      this.maxPrice = 0;
+    }
     this.selectedPlatform = platform;
     this.aplicarFiltros();
   }
