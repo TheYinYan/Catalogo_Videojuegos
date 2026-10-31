@@ -48,15 +48,15 @@ export class AppComponent implements OnInit {
   }
 
   private aplicarFiltrosPrecio(price_gte: number, price_lte: number): void {
-    if (price_gte !== 0 && price_lte !== 0) {
+    if (price_gte > 0 && price_lte > 0) {
       this.gameServer.getGameprice(price_gte, price_lte).subscribe((games) => {
         this.games = games;
       });
-    } else if (price_gte !== 0) {
+    } else if (price_gte > 0) {
       this.gameServer.getGamepriceMin(price_gte).subscribe((games) => {
         this.games = games;
       });
-    } else if (price_lte !== 0) {
+    } else if (price_lte > 0) {
       this.gameServer.getGamepriceMax(price_lte).subscribe((games) => {
         this.games = games;
       });
