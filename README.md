@@ -60,101 +60,61 @@ Este proyecto consiste en el desarrollo de un catálogo de videojuegos utilizand
 
 ---
 
-<!-- 
-====================================================================
-A PARTIR DE AQUÍ ESTÁ PENDIENTE DE IMPLEMENTAR (Comentado)
-====================================================================
--->
+##  Preguntas Final
 
-<!--
-## ⏳ Funcionalidades Pendientes (Puntos 19 en adelante)
-
-### 19-20. Paginación
-- [ ] Implementar `getGamesPage(page, limit)` en el servicio.
-- [ ] Añadir parámetros `_page` y `_limit` a las peticiones HTTP.
-
-### 21-27. Cabeceras HTTP y X-Total-Count
-- [ ] Utilizar `observe: 'response'` en las peticiones para obtener la respuesta completa.
-- [ ] Extraer los datos del `response.body`.
-- [ ] Extraer el total de registros de la cabecera `X-Total-Count`.
-- [ ] Convertir el valor de la cabecera a número (`Number(...)`).
-- [ ] Calcular el número total de páginas usando `Math.ceil(totalItems / pageSize)`.
-
-### 28. Método completo de carga
-- [ ] Unificar la carga de datos en un método `loadGames()` que maneje los filtros, la página actual y actualice el `totalItems` y `totalPages`.
-
-### 29-30. Controles de paginación en la interfaz
-- [ ] Añadir botones de "Anterior" y "Siguiente".
-- [ ] Deshabilitar el botón "Anterior" si `currentPage === 1`.
-- [ ] Deshabilitar el botón "Siguiente" si `currentPage === totalPages`.
-- [ ] Mostrar un indicador de texto: `Página {{ currentPage }} de {{ totalPages }}`.
-
-### 31-32. Combinar filtros y paginación
-- [ ] Asegurar que al cambiar cualquier filtro, se reinicie la `currentPage = 1`.
-- [ ] Integrar todos los filtros existentes en la misma petición HTTP de paginación.
-
-### 34-35. Refactorización con HttpParams
-- [ ] Sustituir la concatenación manual de URLs por el uso de `HttpParams` de Angular para construir las consultas de forma limpia.
-- [ ] Unificar todos los filtros y la paginación en un solo método `getGames(page, limit, genre, platform, minPrice, maxPrice)` en el servicio.
-
----
-
-## 📝 Cuestionario Final (Punto 40)
-
-*(Aquí debes responder a las preguntas teóricas de la actividad)*
 
 1. **¿Qué responsabilidad tiene GameService?**
-   R: 
+
+    Se encarga de comunicarse con el servidor para obtener, buscar, filtrar y enviar los videojuegos.
 
 2. **¿Por qué AppComponent no debería utilizar directamente HttpClient?**
-   R: 
+   Porque es mejor que AppComponent se encargue de mostrar los datos y GameService de comunicarse con el servidor.
 
 3. **¿Qué diferencia existe entre GET /games y GET /games/5?**
-   R: 
+   GET /games obtiene todos los videojuegos y GET /games/5 obtiene solamente el videojuego con ID 5.
 
 4. **¿Qué representa ?genre=RPG?**
-   R: 
+   Sirve para buscar solamente los videojuegos del género RPG.
 
 5. **¿Qué evento DOM genera normalmente un <select> cuando cambia su selección?**
-   R: 
+   El evento change.
 
 6. **¿Cómo se captura dicho evento en Angular?**
-   R: 
+   Utilizando (change) en el HTML.
 
 7. **¿Qué representa $event?**
-   R: 
+   Es el evento que se ha producido, por ejemplo, cuando cambiamos una opción del select.
 
 8. **¿Qué ventaja tiene utilizar una referencia #genreSelect?**
-   R: 
+   Nos permite obtener directamente el valor seleccionado sin utilizar $event.
 
 9. **¿Qué diferencia existe entre title_like=Dragon y q=Dragon?**
-   R: 
+   title_like=Dragon busca Dragon dentro del título y q=Dragon busca Dragon en todos los campos del videojuego. 
 
 10. **¿Para qué sirven _page y _limit?**
-    R: 
+    _page indica la página que queremos ver y _limit cuántos videojuegos queremos mostrar por página.
 
 11. **¿Por qué this.http.get<Game[]>(url) no permite normalmente acceder directamente a las cabeceras?**
-    R: 
+    Porque normalmente solo devuelve los datos de los videojuegos, no toda la respuesta.
 
 12. **¿Qué conseguimos utilizando observe: 'response'?**
-    R: 
+    Podemos acceder tanto a los videojuegos como a las cabeceras de la respuesta. 
 
 13. **¿Dónde se encuentran los videojuegos en una HttpResponse<Game[]>?**
-    R: 
+    En response.body. 
 
 14. **¿Dónde se encuentran las cabeceras HTTP?**
-    R: 
+    En response.headers. 
 
 15. **¿Qué información proporciona X-Total-Count?**
-    R: 
+    Indica el número total de videojuegos que cumplen los filtros, no solo los que aparecen en esa página. 
 
 16. **¿Por qué debemos convertir X-Total-Count a number?**
-    R: 
+    Porque nos llega como texto y necesitamos un número para hacer cálculos. 
 
 17. **¿Cómo calculamos el número total de páginas?**
-    R: 
+    Dividiendo el total de videojuegos entre los videojuegos por página y redondeando hacia arriba.
 
-18. **¿Por qué debemos volver a la página 1 cuando se modifica un filtro?**
-    R: 
-```
--->
+18. ¿Por qué debemos volver a la página 1 cuando se modifica un filtro?
+    Porque puede que con el nuevo filtro no haya suficientes videojuegos para llegar a la página en la que estábamos.
+
