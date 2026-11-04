@@ -158,9 +158,3 @@ A PARTIR DE AQUÍ ESTÁ PENDIENTE DE IMPLEMENTAR (Comentado)
     R: 
 ```
 -->
-
-### ¿Cómo usarlo?
-1. Crea el archivo `README.md` en la raíz de tu proyecto.
-2. Pega el contenido.
-3. Cuando subas el proyecto a GitHub, se verá súper profesional.
-4. A medida que vayas haciendo los puntos del 19 al 35 (paginación, `HttpParams`, etc.), puedes ir borrando los `<!--` y `-->` para que se vean en el README, y marcar las casillas con una `[x]`.

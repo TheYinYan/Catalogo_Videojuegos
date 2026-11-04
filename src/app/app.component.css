@@ -1,5 +1,5 @@
 h1 {
-  color: #ffffff ;
+  color: #ffffff;
   text-align: center;
   margin-bottom: 40px;
   font-size: 2.5rem;
@@ -13,7 +13,7 @@ h1 {
   max-width: 950px;
   margin: 0 auto 30px auto;
   padding: 24px;
-  background-color: #17212b ; 
+  background-color: #17212b;
   border-radius: 8px;
   border: 1px solid #2a475e;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -28,12 +28,19 @@ h1 {
   justify-content: center;
 }
 
+.filtro, .filtro-precios {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .buscador-container label,
 .filtro span,
-.filtro-precios span {
+.filtro-precios span,
+.paginacion-container label {
   font-weight: 600;
   font-size: 0.85rem;
-  color: #8f9ead ;
+  color: #8f9ead;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -47,41 +54,40 @@ h1 {
 
 input[type="text"],
 input[type="number"],
-.filtro-select {
+.filtro-select,
+.size-select {
   padding: 12px 16px;
   border: 1px solid #2a475e;
   border-radius: 4px;
   font-size: 1rem;
-  color: #ffffff ; 
-  background-color: #101822 ; 
+  color: #ffffff;
+  background-color: #101822;
   outline: none;
   transition: all 0.2s ease;
 }
 
 input::placeholder {
-  color: #556c7d ;
+  color: #556c7d;
 }
 
 input[type="text"]:focus,
 input[type="number"]:focus,
-.filtro-select:focus {
-  border-color: #66c0f4 ;
+.filtro-select:focus,
+.size-select:focus {
+  border-color: #66c0f4;
   box-shadow: 0 0 0 3px rgba(102, 192, 244, 0.2);
 }
 
-.filtro-select {
-  width: 100%;
-  min-width: 180px;
+.filtro-select,
+.size-select {
   cursor: pointer;
-  appearance: none;
-  background-position: right 12px center ;
-  background-size: 16px ;
-  padding-right: 40px;
+  background-color: #101822;
 }
 
-.filtro-select option {
-  background-color: #17212b ;
-  color: #ffffff ;
+.filtro-select option,
+.size-select option {
+  background-color: #17212b;
+  color: #ffffff;
 }
 
 .precio-inputs {
@@ -91,18 +97,18 @@ input[type="number"]:focus,
 }
 
 .precio-inputs input {
-  width: 80px;
+  width: 90px;
 }
 
 .precio-inputs .separador {
-  color: #8f9ead ;
+  color: #8f9ead;
   font-weight: bold;
 }
 
 button {
   padding: 12px 24px;
-  background: linear-gradient(90deg, #47bfff 0%, #1a44c2 100%) ;
-  color: #ffffff ;
+  background: linear-gradient(90deg, #47bfff 0%, #1a44c2 100%);
+  color: #ffffff;
   border: none;
   border-radius: 4px;
   font-size: 1rem;
@@ -115,37 +121,46 @@ button {
 }
 
 button:hover:not(:disabled) {
-  background: linear-gradient(90deg, #1a44c2 0%, #47bfff 100%) ;
+  background: linear-gradient(90deg, #1a44c2 0%, #47bfff 100%);
   box-shadow: 0 0 15px rgba(71, 191, 255, 0.5);
   transform: translateY(-2px);
+}
+
+button:disabled {
+  background: #1d262f;
+  color: #4a5a66;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+  border: 1px solid #2a475e;
 }
 
 .contenedor-tarjetas {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 24px; 
+  gap: 24px;
   max-width: 1400px;
   margin: 0 auto;
   padding: 20px;
 }
 
 .card {
-  background-color: #2a475e ;
-  color: #c7d5e0 ;
+  background-color: #17212b;
+  color: #c7d5e0;
   border-radius: 8px;
   padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid transparent;
+  border: 1px solid #2a475e;
 }
 
 .card h3 {
   margin-top: 0;
   margin-bottom: 15px;
-  color: #ffffff ;
+  color: #ffffff;
   font-size: 1.3rem;
   font-weight: 600;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -153,16 +168,16 @@ button:hover:not(:disabled) {
 }
 
 .card p {
-  margin: 8px 0;
-  color: #8f9ead ;
-  font-size: 0.9rem;
+  margin: 12px 0;
+  color: #8f9ead;
+  font-size: 0.95rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .card p b {
-  color: #ffffff ;
+  color: #66c0f4;
   font-weight: 500;
 }
 
@@ -174,9 +189,9 @@ button:hover:not(:disabled) {
 }
 
 .card p:last-child b {
-  background-color: #4c6b22 ;
-  color: #a4d007 ;
-  padding: 4px 10px;
+  background-color: #4c6b22;
+  color: #a4d007;
+  padding: 6px 14px;
   border-radius: 3px;
   font-weight: bold;
 }
@@ -185,11 +200,33 @@ button:hover:not(:disabled) {
   grid-column: 1 / -1;
   display: block;
   text-align: center;
-  color: #8f9ead ;
+  color: #8f9ead;
   font-size: 1.2rem;
   margin-top: 40px;
   padding: 40px;
-  background-color: #17212b ;
+  background-color: #17212b;
   border-radius: 8px;
   border: 1px dashed #2a475e;
+}
+
+.paginacion-container {
+  max-width: 950px;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background-color: #17212b;
+  border-radius: 8px;
+  border: 1px solid #2a475e;
+  color: #ffffff;
+}
+
+.paginacion-controles {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-size: 1.1rem;
+  font-weight: 500;
 }

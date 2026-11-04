@@ -9,18 +9,26 @@
 
   <div class="buscador">
     <label for="buscarTitulo">Buscar por Título:</label>
-    <input #buscarTitulo id="buscarTitulo" type="text" placeholder="Título del Juego">
+    <input #buscarTitulo id="buscarTitulo" type="text"
+      placeholder="Título del Juego">
     <button (click)="onBuscarTitulo(buscarTitulo.value)">Buscar</button>
+  </div>
+
+  <div class="buscador">
+    <label for="buscarGlobal">Busqueda Global:</label>
+    <input #buscarGlobal id="buscarGlobal" type="text"
+      placeholder="Buscar por cualquier parametro">
+    <button (click)="onBuscarGlobal(buscarGlobal.value)">Buscar</button>
   </div>
 </div>
 
 <div class="filtros-globales">
   <div class="filtro">
     <span>Género</span>
-    <select #genreSelect class="filtro-select" 
-            [disabled]="minPrice > 0 || maxPrice > 0" 
-            (change)="onGenreChange(genreSelect.value)">
-      <option value="">Todos</option>
+    <select #genreSelect class="filtro-select"
+      [disabled]="minPrice > 0 || maxPrice > 0"
+      (change)="onGenreChange(genreSelect.value)">
+      <option value>Todos</option>
       <option value="Action">Action</option>
       <option value="Adventure">Adventure</option>
       <option value="RPG">RPG</option>
@@ -33,10 +41,10 @@
 
   <div class="filtro">
     <span>Plataforma</span>
-    <select #platformSelect class="filtro-select" 
-            [disabled]="minPrice > 0 || maxPrice > 0" 
-            (change)="onPlatformChange(platformSelect.value)">
-      <option value="">Todas</option>
+    <select #platformSelect class="filtro-select"
+      [disabled]="minPrice > 0 || maxPrice > 0"
+      (change)="onPlatformChange(platformSelect.value)">
+      <option value>Todas</option>
       <option value="PC">PC</option>
       <option value="PlayStation">PlayStation</option>
       <option value="Xbox">Xbox</option>
@@ -47,13 +55,13 @@
   <div class="filtro-precios">
     <span>Precio (€)</span>
     <div class="precio-inputs">
-      <input #minPrecio type="number" placeholder="Mín" 
-             [disabled]="selectedGenre !== '' || selectedPlatform !== ''">
+      <input #minPrecio type="number" placeholder="Mín"
+        [disabled]="selectedGenre !== '' || selectedPlatform !== ''">
       <span class="separador">-</span>
-      <input #maxPrecio type="number" placeholder="Máx" 
-             [disabled]="selectedGenre !== '' || selectedPlatform !== ''">
-      <button [disabled]="selectedGenre !== '' || selectedPlatform !== ''" 
-              (click)="onBuscarPrecio(minPrecio.value, maxPrecio.value)">
+      <input #maxPrecio type="number" placeholder="Máx"
+        [disabled]="selectedGenre !== '' || selectedPlatform !== ''">
+      <button [disabled]="selectedGenre !== '' || selectedPlatform !== ''"
+        (click)="onBuscarPrecio(minPrecio.value, maxPrecio.value)">
         Filtrar
       </button>
     </div>
@@ -73,4 +81,40 @@
   } @empty {
   <span class="mensaje-vacio">No hay Juegos Cargados</span>
   }
+</div>
+
+<div class="paginacion-container">
+
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <label for="pageSize">Videojuegos por página:</label>
+    <select
+      id="pageSize"
+      class="size-select"
+      [value]="pageSize"
+      (change)="onPageSizeChange($any($event.target).value)">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+    </select>
+  </div>
+
+  <div class="paginacion-controles">
+    <button
+      (click)="paginaAnterior()"
+      [disabled]="currentPage === 1">
+      Anterior
+    </button>
+
+    <span>
+      Página {{ currentPage }} de {{ totalPages }}
+    </span>
+
+    <button
+      (click)="paginaSiguiente()"
+      [disabled]="currentPage >= totalPages">
+      Siguiente
+    </button>
+  </div>
+
 </div>

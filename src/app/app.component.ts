@@ -15,60 +15,84 @@ export class AppComponent implements OnInit {
 
   selectedGenre = '';
   selectedPlatform = '';
-  minPrice = 0; 
-  maxPrice = 0; 
+  titulo = '';
+  q = '';
+  minPrice = 0;
+  maxPrice = 0;
+  currentPage = 1;
+  pageSize = 5;
+  totalItems = 0;
+  totalPages = 0;
 
-  constructor(private gameServer: GameService) { }
+  constructor(private gameServer: GameService) {}
 
   ngOnInit(): void {
-    this.gameServer.getGames().subscribe((games) => {
-      this.games = games;
-    });
+    this.cargarPagina();
   }
 
-  private aplicarFiltros(): void {
-    const genre = this.selectedGenre;
-    const platform = this.selectedPlatform;
+  cargarPagina(): void {
+    this.gameServer
+      .getGamesPage(
+        this.currentPage,
+        this.pageSize,
+        this.selectedGenre,
+        this.selectedPlatform,
+        this.q,
+        this.titulo,
+        this.minPrice,
+        this.maxPrice
+      )
+      .subscribe((response) => {
+        this.games = response.body ?? [];
 
-    if (genre && platform) {
-      this.gameServer.getGameplatformGenre(platform, genre).subscribe((games) => {
-        this.games = games;
+        this.totalItems = Number(response.headers.get('X-Total-Count') ?? 0);
+
+        this.totalPages = Math.ceil(this.totalItems / this.pageSize);
       });
-    } else if (genre) {
-      this.gameServer.getGameGenre(genre).subscribe((games) => {
-        this.games = games;
-      });
-    } else if (platform) {
-      this.gameServer.getGameplatform(platform).subscribe((games) => {
-        this.games = games;
-      });
-    } else {
-      this.ngOnInit();
-    }
   }
 
-  private aplicarFiltrosPrecio(price_gte: number, price_lte: number): void {
-    if (price_gte > 0 && price_lte > 0) {
-      this.gameServer.getGameprice(price_gte, price_lte).subscribe((games) => {
-        this.games = games;
-      });
-    } else if (price_gte > 0) {
-      this.gameServer.getGamepriceMin(price_gte).subscribe((games) => {
-        this.games = games;
-      });
-    } else if (price_lte > 0) {
-      this.gameServer.getGamepriceMax(price_lte).subscribe((games) => {
-        this.games = games;
-      });
-    } else {
-      this.ngOnInit();
-    }
-  }
+  // private aplicarFiltros(): void {
+  //   const genre = this.selectedGenre;
+  //   const platform = this.selectedPlatform;
+
+  //   if (genre && platform) {
+  //     this.gameServer
+  //       .getGameplatformGenre(platform, genre)
+  //       .subscribe((games) => {
+  //         this.games = games;
+  //       });
+  //   } else if (genre) {
+  //     this.cargarPagina();
+  //   } else if (platform) {
+  //     this.cargarPagina();
+  //   } else {
+  //     this.ngOnInit();
+  //   }
+  // }
+
+  // private aplicarFiltrosPrecio(price_gte: number, price_lte: number): void {
+  //   if (price_gte > 0 && price_lte > 0) {
+  //     this.gameServer.getGameprice(price_gte, price_lte).subscribe((games) => {
+  //       this.games = games;
+  //     });
+  //   } else if (price_gte > 0) {
+  //     this.gameServer.getGamepriceMin(price_gte).subscribe((games) => {
+  //       this.games = games;
+  //     });
+  //   } else if (price_lte > 0) {
+  //     this.gameServer.getGamepriceMax(price_lte).subscribe((games) => {
+  //       this.games = games;
+  //     });
+  //   } else {
+  //     this.ngOnInit();
+  //   }
+  // }
 
   onBuscarId(id: string) {
     if (id === '') {
       this.ngOnInit();
     } else {
+      this.currentPage = 1;
       this.gameServer.getGame(+id).subscribe((game) => {
         this.games = [game];
       });
@@ -76,37 +100,48 @@ export class AppComponent implements OnInit {
   }
 
   onBuscarTitulo(title: string) {
-    if (title === '') {
-      this.ngOnInit();
-    } else {
-      this.gameServer.getGameTitle(title).subscribe((game) => {
-        this.games = game;
-      });
-    }
+    this.titulo = title;
+    this.cargarPagina();
+  }
+
+  onBuscarGlobal(value: string) {
+    this.q = value;
+    this.cargarPagina();
   }
 
   onBuscarPrecio(price_gte: string, price_lte: string) {
     this.minPrice = price_gte ? +price_gte : 0;
     this.maxPrice = price_lte ? +price_lte : 0;
-    
-    this.aplicarFiltrosPrecio(this.minPrice, this.maxPrice);
+    this.cargarPagina();
   }
 
   onGenreChange(genre: string): void {
-    if (genre !== '') {
-      this.minPrice = 0;
-      this.maxPrice = 0;
-    }
     this.selectedGenre = genre;
-    this.aplicarFiltros();
+    this.cargarPagina();
   }
 
   onPlatformChange(platform: string): void {
-    if (platform !== '') {
-      this.minPrice = 0;
-      this.maxPrice = 0;
-    }
     this.selectedPlatform = platform;
-    this.aplicarFiltros();
+    this.cargarPagina();
+  }
+
+  onPageSizeChange(limit: string): void {
+    this.pageSize = +limit;
+    this.currentPage = 1;
+    this.cargarPagina();
+  }
+
+  paginaAnterior(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.cargarPagina();
+    }
+  }
+
+  paginaSiguiente(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.cargarPagina();
+    }
   }
 }
