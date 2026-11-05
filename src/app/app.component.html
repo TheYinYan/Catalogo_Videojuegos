@@ -83,6 +83,14 @@
   }
 </div>
 
+<div class="NewGame">
+  <button (click)="onCrear()">Añadir un Juego</button>
+</div>
+
+@if (crearGame) {
+  <app-crud></app-crud>
+}
+
 <div class="paginacion-container">
 
   <div style="display: flex; align-items: center; gap: 12px;">

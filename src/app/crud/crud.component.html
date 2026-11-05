@@ -1,0 +1,141 @@
+<h1>GESTIÓN DE VIDEOJUEGOS</h1>
+
+<form
+  #gameForm="ngForm"
+  (ngSubmit)="onSaveGame( )">
+
+  <div class="title-from">
+    <label for="titleId">Título: </label>
+    <input
+      [class.invalid-control]="title.invalid && (title.dirty || title.touched)"
+      id="titleId"
+      type="text"
+      placeholder="Añade un Título valido"
+      name="title"
+      [(ngModel)]="game.title"
+      required
+      minlength="3"
+      maxlength="40"
+      #title="ngModel">
+
+    @if (title.invalid && (title.dirty || title.touched)) {
+
+      @if (title.errors?.['required']) {
+        <p class="alerta">El título es obligatorio.</p>
+      }
+
+      @if (title.errors?.['minlength']) {
+        <p class="alerta">El título debe tener al menos 3 caracteres.</p>
+      }
+    }
+
+  </div>
+  <div class="genre-from">
+    <label for="genreId">Género: </label>
+    <select
+      [class.invalid-control]="genre.invalid && (genre.dirty || genre.touched)"
+      id="genreId"
+      name="genre"
+      [(ngModel)]="game.genre"
+      required
+      #genre="ngModel">
+      <option value>Selecciona un género</option>
+      <option value="Platform">Platform</option>
+      <option value="Strategy">Strategy</option>
+      <option value="Racing">Racing</option>
+      <option value="RPG">RPG</option>
+      <option value="Action">Action</option>
+      <option value="Adventure">Adventure</option>
+      <option value="Simulation">Simulation</option>
+      <option value="Sports">Sports</option>
+    </select>
+
+    @if (genre.invalid && (genre.dirty || genre.touched)) {
+      @if (genre.errors?.['required']) {
+        <p class="alerta">El género es obligatorio.</p>
+      }
+    }
+  </div>
+
+  <div class="platform-from">
+    <label for="platformId">Plataforma: </label>
+    <select
+      [class.invalid-control]="platform.invalid && (platform.dirty || platform.touched)"
+      id="platformId"
+      name="platform"
+      [(ngModel)]="game.platform"
+      required
+      #platform="ngModel">
+      <option value>Selecciona un Plataforma</option>
+      <option value="Platform">PC</option>
+      <option value="Strategy">PlayStation</option>
+      <option value="Racing">Xbox</option>
+      <option value="RPG">Switch</option>
+    </select>
+
+    @if (platform.invalid && (platform.dirty || platform.touched)) {
+      @if (platform.errors?.['required']) {
+        <p class="alerta">La Plataforma es obligatorio.</p>
+      }
+    }
+  </div>
+
+  <div class="price-from">
+    <label for="priceId">Precio: </label>
+    <input
+      [class.invalid-control]="price.invalid && (price.dirty || price.touched)"
+      id="priceId"
+      type="number"
+      name="price"
+      [(ngModel)]="game.price"
+      required
+      min="0.01"
+      max="100"
+      #price="ngModel">
+
+    @if (price.invalid && ( price.touched || price.dirty)) {
+
+      @if (price.errors?.[`required`]) {
+        <p class="alerta">El precio es obligatorio.</p>
+      }
+
+      @if (price.errors?.['min'] || price.errors?.['max']) {
+        <p class="alerta">Precio esta fuera de Rango </p>
+      }
+
+    }
+  </div>
+
+  <div class="stock-from">
+    <label for="stockId">Stock: </label>
+    <input
+      [class.invalid-control]="stock.invalid && (stock.dirty || stock.touched)"
+      id="stockId"
+      type="number"
+      name="stock"
+      [(ngModel)]="game.stock"
+      required
+      min="1"
+      max="999"
+      #stock="ngModel">
+
+    @if (stock.invalid && ( stock.touched || stock.dirty)) {
+
+      @if (stock.errors?.[`required`]) {
+        <p class="alerta">El stock es obligatorio.</p>
+      }
+
+      @if (stock.errors?.['min'] || stock.errors?.['max']) {
+        <p class="alerta">Stock esta fuera de Rango </p>
+      }
+
+    }
+  </div>
+
+  <button [disabled]="gameForm.invalid">Guardar</button>
+
+
+  <p>Válido: {{ gameForm.valid }}</p>
+  <p>Modificado: {{ gameForm.dirty }}</p>
+
+</form>

@@ -230,3 +230,7 @@ button:disabled {
   font-size: 1.1rem;
   font-weight: 500;
 }
+
+.NewGame{
+  text-align: center;
+}
