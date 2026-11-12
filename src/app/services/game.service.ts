@@ -95,4 +95,16 @@ export class GameService {
       observe: 'response',
     });
   }
+
+  postGame(game: Game) {
+    return this.http.post<Game>(this.apiUrl, game);
+  }
+
+  putGame(game: Game) {
+    if (game.id) {
+      return this.http.put<Game>(this.apiUrl+`/${game.id}`, game);
+    }
+
+    throw new Error(`Game a actualizar sin id = ${game}`)
+  }
 }

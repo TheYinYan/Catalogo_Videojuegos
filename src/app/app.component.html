@@ -77,6 +77,9 @@
       <p><b>Plataforma:</b> {{ game.platform }}</p>
       <p><b>Precio:</b> {{ game.price }}€</p>
     </div>
+    <button (click)="this.editGame = game; this.verForm = true">
+        Editar
+    </button>
   </div>
   } @empty {
   <span class="mensaje-vacio">No hay Juegos Cargados</span>
@@ -87,8 +90,8 @@
   <button (click)="onCrear()">Añadir un Juego</button>
 </div>
 
-@if (crearGame) {
-  <app-crud></app-crud>
+@if (verForm) {
+  <app-crud [editGame]="this.editGame" (actGame)="onActGame($event)"></app-crud>
 }
 
 <div class="paginacion-container">
@@ -104,6 +107,8 @@
       <option value="10">10</option>
       <option value="15">15</option>
       <option value="20">20</option>
+      <option value="25">25</option>
+      <option value="30">30</option>
     </select>
   </div>
 

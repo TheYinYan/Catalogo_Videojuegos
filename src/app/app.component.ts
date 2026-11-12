@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   title = 'Catalogo de Videojuegos';
   games: Game[] = [];
 
-  crearGame = false;
+  verForm = false;
   selectedGenre = '';
   selectedPlatform = '';
   titulo = '';
@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
   pageSize = 5;
   totalItems = 0;
   totalPages = 0;
+  editGame?: Game;
 
   constructor(private gameServer: GameService) {}
 
@@ -33,7 +34,7 @@ export class AppComponent implements OnInit {
   }
 
   onCrear(){
-    this.crearGame = !this.crearGame
+    this.verForm = !this.verForm
   }
 
   cargarPagina(): void {
@@ -56,43 +57,6 @@ export class AppComponent implements OnInit {
         this.totalPages = Math.ceil(this.totalItems / this.pageSize);
       });
   }
-
-  // private aplicarFiltros(): void {
-  //   const genre = this.selectedGenre;
-  //   const platform = this.selectedPlatform;
-
-  //   if (genre && platform) {
-  //     this.gameServer
-  //       .getGameplatformGenre(platform, genre)
-  //       .subscribe((games) => {
-  //         this.games = games;
-  //       });
-  //   } else if (genre) {
-  //     this.cargarPagina();
-  //   } else if (platform) {
-  //     this.cargarPagina();
-  //   } else {
-  //     this.ngOnInit();
-  //   }
-  // }
-
-  // private aplicarFiltrosPrecio(price_gte: number, price_lte: number): void {
-  //   if (price_gte > 0 && price_lte > 0) {
-  //     this.gameServer.getGameprice(price_gte, price_lte).subscribe((games) => {
-  //       this.games = games;
-  //     });
-  //   } else if (price_gte > 0) {
-  //     this.gameServer.getGamepriceMin(price_gte).subscribe((games) => {
-  //       this.games = games;
-  //     });
-  //   } else if (price_lte > 0) {
-  //     this.gameServer.getGamepriceMax(price_lte).subscribe((games) => {
-  //       this.games = games;
-  //     });
-  //   } else {
-  //     this.ngOnInit();
-  //   }
-  // }
 
   onBuscarId(id: string) {
     if (id === '') {
@@ -149,5 +113,9 @@ export class AppComponent implements OnInit {
       this.currentPage++;
       this.cargarPagina();
     }
+  }
+
+  onActGame(game:Game){
+    this.cargarPagina();
   }
 }

@@ -2,7 +2,7 @@
 
 <form
   #gameForm="ngForm"
-  (ngSubmit)="onSaveGame( )">
+  (ngSubmit)="onSaveGame(gameForm)">
 
   <div class="title-from">
     <label for="titleId">Título: </label>
@@ -67,10 +67,10 @@
       required
       #platform="ngModel">
       <option value>Selecciona un Plataforma</option>
-      <option value="Platform">PC</option>
-      <option value="Strategy">PlayStation</option>
-      <option value="Racing">Xbox</option>
-      <option value="RPG">Switch</option>
+      <option value="PC">PC</option>
+      <option value="PlayStation">PlayStation</option>
+      <option value="Xbox">Xbox</option>
+      <option value="Switch">Switch</option>
     </select>
 
     @if (platform.invalid && (platform.dirty || platform.touched)) {

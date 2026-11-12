@@ -2,10 +2,11 @@
   "games": [
     {
       "id": 1,
-      "title": "Pixel Runner",
+      "title": "Pixel Runners",
       "genre": "Platform",
       "platform": "PC",
-      "price": 14.99
+      "price": 14.99,
+      "stock": 11
     },
     {
       "id": 2,
@@ -136,6 +137,21 @@
       "platform": "PC",
       "price": 24.99,
       "stock": 15
+    },
+    {
+      "title": "New desde Posman",
+      "genre": "Platform",
+      "platform": "PC",
+      "price": 99.99,
+      "id": 20
+    },
+    {
+      "title": "The Yinyan",
+      "genre": "Simulation",
+      "platform": "PC",
+      "price": 22.22,
+      "stock": 22,
+      "id": 21
     }
   ]
 }
