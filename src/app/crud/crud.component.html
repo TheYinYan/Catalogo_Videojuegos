@@ -1,8 +1,6 @@
 <h1>GESTIÓN DE VIDEOJUEGOS</h1>
-
-<form
-  #gameForm="ngForm"
-  (ngSubmit)="onSaveGame(gameForm)">
+<form [formGroup]="formGroup" #gameForm="ngForm"
+ (ngSubmit)="onSaveGame(gameForm)" novalidate>
 
   <div class="title-from">
     <label for="titleId">Título: </label>
@@ -11,20 +9,15 @@
       id="titleId"
       type="text"
       placeholder="Añade un Título valido"
-      name="title"
-      [(ngModel)]="game.title"
-      required
-      minlength="3"
-      maxlength="40"
-      #title="ngModel">
+      formControlName="title"/>
 
     @if (title.invalid && (title.dirty || title.touched)) {
 
-      @if (title.errors?.['required']) {
+      @if (title.hasError('required')) {
         <p class="alerta">El título es obligatorio.</p>
       }
 
-      @if (title.errors?.['minlength']) {
+      @if (title.hasError('minlength')) {
         <p class="alerta">El título debe tener al menos 3 caracteres.</p>
       }
     }
@@ -35,10 +28,7 @@
     <select
       [class.invalid-control]="genre.invalid && (genre.dirty || genre.touched)"
       id="genreId"
-      name="genre"
-      [(ngModel)]="game.genre"
-      required
-      #genre="ngModel">
+      formControlName="genre">
       <option value>Selecciona un género</option>
       <option value="Platform">Platform</option>
       <option value="Strategy">Strategy</option>
@@ -51,7 +41,7 @@
     </select>
 
     @if (genre.invalid && (genre.dirty || genre.touched)) {
-      @if (genre.errors?.['required']) {
+      @if (genre.hasError('required')) {
         <p class="alerta">El género es obligatorio.</p>
       }
     }
@@ -62,10 +52,7 @@
     <select
       [class.invalid-control]="platform.invalid && (platform.dirty || platform.touched)"
       id="platformId"
-      name="platform"
-      [(ngModel)]="game.platform"
-      required
-      #platform="ngModel">
+      formControlName="platform">
       <option value>Selecciona un Plataforma</option>
       <option value="PC">PC</option>
       <option value="PlayStation">PlayStation</option>
@@ -74,7 +61,7 @@
     </select>
 
     @if (platform.invalid && (platform.dirty || platform.touched)) {
-      @if (platform.errors?.['required']) {
+      @if (platform.hasError('required')) {
         <p class="alerta">La Plataforma es obligatorio.</p>
       }
     }
@@ -86,20 +73,15 @@
       [class.invalid-control]="price.invalid && (price.dirty || price.touched)"
       id="priceId"
       type="number"
-      name="price"
-      [(ngModel)]="game.price"
-      required
-      min="0.01"
-      max="100"
-      #price="ngModel">
+      formControlName="price">
 
     @if (price.invalid && ( price.touched || price.dirty)) {
 
-      @if (price.errors?.[`required`]) {
+      @if (price.hasError('required')) {
         <p class="alerta">El precio es obligatorio.</p>
       }
 
-      @if (price.errors?.['min'] || price.errors?.['max']) {
+      @if (price.hasError('min') || price.hasError('max')) {
         <p class="alerta">Precio esta fuera de Rango </p>
       }
 
@@ -112,20 +94,15 @@
       [class.invalid-control]="stock.invalid && (stock.dirty || stock.touched)"
       id="stockId"
       type="number"
-      name="stock"
-      [(ngModel)]="game.stock"
-      required
-      min="1"
-      max="999"
-      #stock="ngModel">
+      formControlName="stock">
 
     @if (stock.invalid && ( stock.touched || stock.dirty)) {
 
-      @if (stock.errors?.[`required`]) {
+      @if (stock.hasError('required')) {
         <p class="alerta">El stock es obligatorio.</p>
       }
 
-      @if (stock.errors?.['min'] || stock.errors?.['max']) {
+      @if (stock.hasError('min') || stock.hasError('max')) {
         <p class="alerta">Stock esta fuera de Rango </p>
       }
 
