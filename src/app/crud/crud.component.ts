@@ -60,7 +60,8 @@ export class CrudComponent {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['editGame']?.currentValue) {
       // this.game = { ...changes['editGame'].currentValue };
-      this.formGroup.setValue(changes['editGame'].currentValue)
+      this.game = changes['editGame'].currentValue;
+      this.formGroup.patchValue(this.game);
       this.edit = true;
     }
   }
@@ -82,7 +83,7 @@ export class CrudComponent {
     console.log(form.value);
 
     if (this.edit) {
-      this.gameServer.putGame(this.game).subscribe((updateGame) => {
+      this.gameServer.putGame({id: this.game.id, ...form.value}).subscribe((updateGame) => {
         console.log(`Upadate Game: ${this.game}`);
         form.resetForm();
         this.edit = false;
