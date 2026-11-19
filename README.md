@@ -1,4 +1,4 @@
-(Enlace en Vercel)[https://catalogo-videojuegos-xi.vercel.app/]
+[Enlace en Vercel](https://catalogo-videojuegos-xi.vercel.app/)
 
 1. **¿Dónde se encuentra ahora la fuente de verdad de los valores del formulario?**
 
